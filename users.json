@@ -1,0 +1,5 @@
+{
+	"directors": ["John", "Bob", "Rob"],
+	"workers":["Eric", "Steeve", "Margaret"],
+	"assistants":["Diana", "CT", "Denis"]
+}
