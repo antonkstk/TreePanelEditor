@@ -21,7 +21,6 @@ io.on('connection', function(socket) {
 	fs.readFile(urlToUsersJson, function(event, fileName) {
 		//read json file
 		jsonfile.readFile(urlToUsersJson, function(err, data) {
-			var jsonData = data;
 			//console.log('Error: '+err);
 			//actual data sending
 			socket.emit('notification', data);
@@ -31,16 +30,11 @@ io.on('connection', function(socket) {
 	socket.on('changingJson', function(data) {
 		//console.log(data);
 		//console.log("message received!!");
-		//write changes to json
+		//write changes to json file
 		fs.writeFile(urlToUsersJson, data, function(err) {
 			if(err){
 				console.log(err);
 			}
-			jsonfile.writeFile(file, data, function (err) {
-				if(err){
-					console.error(err)	;
-				}
-			});	
 		});
 	});
 
