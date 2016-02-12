@@ -1,5 +1,1 @@
-{
-	"directors": ["John", "Bob", "Rob"],
-	"workers":["Eric", "Steeve", "Margaret"],
-	"assistants":["Diana", "CT", "Denis"]
-}
+{"director":{"level":1,"persons":[" Eric  "]},"deputy":{"level":2,"persons":[" Steeve  "," Tom  "," Margaret  "]},"contractor":{"level":3,"persons":[" Diana  "," CT  "," Denis  "," John  "]},"courier":{"level":4,"persons":[" Sarah  "," Bob  "," Rob  "," Chris  "," Arnold  "]}}
