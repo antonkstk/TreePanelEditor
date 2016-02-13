@@ -17,21 +17,19 @@ app.get('/', function(req, res) {
 //create connection
 io.on('connection', function(socket) {
 	console.log('a user connected');
-	//send json to client after connection
-	fs.readFile(urlToUsersJson, function(event, fileName) {
-		//read json file
-		jsonfile.readFile(urlToUsersJson, function(err, data) {
-			//console.log('Error: '+err);
-			//actual data sending
-			socket.emit('notification', data);
-		});
+	//read json file and send its data to client after connection
+	jsonfile.readFile(urlToUsersJson, function(err, data) {
+		//console.log('Error: '+err);
+		//actual data sending
+		socket.emit('firstcall', data);
 	});
 	//receive json and resave it
-	socket.on('changingJson', function(data) {
+	socket.on('message', function(data) {
 		//console.log(data);
 		//console.log("message received!!");
 		//write changes to json file
 		fs.writeFile(urlToUsersJson, data, function(err) {
+			console.log("Writing once");
 			if(err){
 				console.log(err);
 			}

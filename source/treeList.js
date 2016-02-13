@@ -19,10 +19,12 @@ var obj = {
 	}
 };
 var socket = io.connect('http://localhost:8080');
-socket.on('notification', function(data) {
+socket.on('firstcall', function(data) {
 	console.log('notification received');
 	var treeNode = data;
 	buildTree(treeNode, tree);
+	//unsubscribe from first json upload listener
+	socket.removeAllListeners('firstcall');
 });
 
 function buildTree(treeNode, domElement) {
@@ -64,6 +66,24 @@ function moveEl(event, direction) {
 }
 
 function loopOverChildren(ul) {
+	var obj = {
+		director: {
+			level: 1, 
+			persons: new Array()
+		},
+		deputy: {
+			level: 2, 
+			persons: new Array()
+		},
+		contractor: {
+			level: 3, 
+			persons: new Array()
+		},
+		courier: {
+			level: 4, 
+			persons: new Array() 
+		}
+	};
 	for(var i=0; i< ul.childNodes.length; i++){
 		//get firstchild of general ul
 		var position = ul.childNodes[i].firstChild.data;
@@ -98,5 +118,5 @@ function loopOverChildren(ul) {
 }
 
 function saveJsonChanges(obj) {
-	socket.emit('changingJson', JSON.stringify(obj));
+	socket.emit('message', JSON.stringify(obj));
 }
